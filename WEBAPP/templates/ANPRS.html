@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+</head>
+<body>
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top  bg-dark">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+   
+   
+
+    
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+     
+     
+        <ul class="nav nav-tabs mb-5 me-auto mb-2 mb-lg-0"  id="ex-with-icons" role="tablist">
+        
+<a class="navbar-brand me-2 " >
+      <img src="{{ url_for('static', filename='Eagle_Eye_logo.png') }}" alt="Logo" height="30"  loading="lazy" />
+    </a>
+    <a class="navbar-brand text-warning" href="#"><span class="text-danger">Eagle_</span>Eye</a> 
+      
+  <li class="nav-item" role="presentation"  style="margin-top: 4px;">
+    <a class="nav-link  " id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="/Home" role="tab"
+      aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-home me-2"> </i>Home</a>
+  </li>
+  <li class="nav-item" role="presentation"  style="margin-top: 4px;">
+    <a class="nav-link active" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="/ANPRS" role="tab"
+      aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-university me-2"></i>ANPRS</a>
+  </li>
+  <li class="nav-item" role="presentation"  style="margin-top: 4px;">
+    <a class="nav-link " id="ex-with-icons-tab-3" data-mdb-toggle="tab" href="/FRS" role="tab"
+      aria-controls="ex-with-icons-tabs-3" aria-selected="false"><i class="fas fa-swatchbook me-2"></i>FRS</a>
+  </li>
+  <li class="nav-item" role="presentation"  style="margin-top: 4px;">
+    <a class="nav-link " id="ex-with-icons-tab-4" data-mdb-toggle="tab" href="/About_us" role="tab"
+      aria-controls="ex-with-icons-tabs-4" aria-selected="false"><i class="fab fa-angular me-2"></i>ABOUT US</a>
+  </li>
+  
+      </ul>
+<div>
+  <a href="login.php">
+  <button type="button" class="btn btn-link px-3 me-2">
+<i class="fas fa-sign-in-alt me-2"></i>Login
+        </button>
+  </a>
+
+</div>
+
+    
+      <!-- Left links -->
+
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar --> 
+<div>
+  <br><br>
+</div> 
+<br>
+<div class="container">
+    <br><br>
+    <h3 >Automatic Number Plate Recognition for a image</h3>
+        <br><br>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <input type="file" class="form-control" name="image_name" required>
+                <input type="submit" value="Upload" class="btn btn-outline-secondary">
+            </div>
+        </form>
+    </div>
+
+ <br>
+ <br>
+<div class="container">
+    <h3>Automatic Number Plate Recognition for a Video</h3>
+    <br><br>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+            <input type="file" class="form-control" name="video_name" required>
+            <input type="submit" value="Upload" class="btn btn-outline-secondary">
+        </div>
+    </form>
+</div>
+
+    
+{% if upload %}
+    {% for i in range(texts|length) %}
+    <div class="container">
+        <br><br>
+        <table>
+            <tr>
+                <td>
+                    <img class="rounded float-left img-fluid" src="/static/upload/For_anprs/{{ upload_image }}" alt="">
+                </td>
+                <td>
+                    <img class="rounded float-right img-fluid" src="/static/predict/{{ saved_filenames[i] }}" alt="">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>Cropped Licence Plate Image</th>
+                <th>Text</th>
+            </tr>
+            <tr>
+                <td>
+                    <img class="img-fluid" src="/static/roi/{{ saved_filenames[i] }}" alt="">
+                </td>
+                <td style="background-color: greenyellow;">
+                    <h1 class="display-8">{{ texts[i] }}</h1>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+{% endif %}
+   
+<div class="container text-center pt-5">
+    
+    <h2>Description:</h2>
+    <h3>Please upload an image or a video of a vehicle with a number plate and this intelligent website will try to <b>predict
+        </b>what is the license plate number, with the help of <b>(Deep Learning Model)</b>.</h3>
+</div>
+ <br> <br> <br>
+ 
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Automatic Number Plate Recognition System (ANPRS)</h2>
+             <br>
+            <p>An Automatic Number Plate Recognition System (ANPRS) is a technology that automatically detects and extracts license plate information from images or videos. It utilizes deep learning techniques for object detection and Optical Character Recognition (OCR) for text extraction from license plate regions.</p>
+            <p>This system can be used for various applications such as automated toll collection, parking management, and law enforcement.</p>
+        </div>
+        <div class="col-lg-6">
+            <img src="{{ url_for('static', filename='anprs_image.jpg') }}" class="img-fluid" alt="ANPRS Image">
+        </div>
+    </div>
+    
+    <br><br>
+</div>
+
+
+<footer style="background-image: url('/static/footer_image.jpg');" center/cover no-repeat " class="bg-dark" >
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row my-4">
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-light">
+  
+            <div class="rounded-circle bg-warning shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 120px; height: 120px;">
+              <img src="{{ url_for('static', filename='Eagle_Eye_logo.png') }}"  height="100" alt="Eagle Eye"
+                   loading="lazy" />
+            </div>
+  
+            
+            <p class="text-center text-light">Advanced ANPRS and FRS solutions</p>
+  
+            <ul class="list-unstyled d-flex flex-row justify-content-center">
+              <li>
+                <a class="text-primary px-2" href="https://www.facebook.com/niten.kumawat.3?mibextid=ZbWKwL">
+                    <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="bi bi-facebook"></i>
+                      </span>
+                </a>
+              </li>
+              <li>
+                <a class="text-primary px-2" href="https://instagram.com/nitenkumawat?utm_source=qr&igshid=MThlNWY1MzQwNA==">
+                    <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="bi bi-instagram"></i>
+                      </span>
+                </a>
+              </li>
+              <li>
+                <a class="text-primary px-2" href="https://x.com/Nitenkumawat2?t=Zf8qfEjoAbAgSQCFaWY1mw&s=08">
+                    <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="bi bi-twitter-x"></i>
+                      </span>
+                </a>
+              </li>
+              <li>
+                <a class="text-primary ps-2" href="https://youtube.com/@nitenkumawat6366?si=yAstXfAvJY13jEGR">
+                    <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="bi bi-youtube"></i>
+                      </span>
+                </a>
+              </li>
+            </ul>
+  
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-light">
+            <h5 class="text-uppercase mb-4">Useful Links</h5>
+            <ul class="fa-ul ml-4">
+              <li><a href="/Home" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Home</a></li>
+              <li><a href="/About_us" class="text-primary"><i class="fa-li fa fa-angle-right"></i>About Us</a></li>
+              <li><a href="" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Terms &amp; Conditions</a></li>
+              <li><a href="" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Privacy Policy</a></li>
+            </ul>
+             
+          </div>
+          <!--Grid column-->
+  
+           <!--Grid column-->
+           <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-light">
+            <h5 class="text-uppercase mb-4">Our Team</h5>
+            <ul class="fa-ul ml-4">
+              <li><a href="https://www.linkedin.com/in/niten-kumawat-a26891265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Niten Kumawat</a></li>
+              <li><a href="https://www.linkedin.com/in/rakshita-jaju" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Rakshita Jaju</a></li>
+              <li><a href="https://www.linkedin.com/in/pranjal-agarwal-40aa66265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Pranjal Agarwal</a></li>
+              <li><a href="https://www.linkedin.com/in/arbaz-siddiqui-632999215?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-primary"><i class="fa-li fa fa-angle-right"></i>Arbaz</a></li>
+            </ul>
+             
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-light">
+            <h5 class="text-uppercase mb-4">Contact</h5>
+  
+            <ul class="list-unstyled">
+              <li>
+                <p><i class="fas fa-map-marker-alt pe-2"></i>Eagle Eye</p>
+              </li>
+              <li>
+                <p><i class="fas fa-phone pe-2"></i>+91 8058008642</p>
+              </li>
+              <li>
+                <p><i class="fas fa-envelope pe-2 mb-0"></i>nitenkumawat@gmail.com</p>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+  
+      <section class="py-2 bg-dark text-light">
+        <div class="container-fluid">
+          Copyright 2024 All Rights Reseved. <a href="https://www.linkedin.com/in/niten-kumawat-a26891265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-light">Eagle Eye</a>
+        </div>
+      </section>
+    </footer>
+  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
